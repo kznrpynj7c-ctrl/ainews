@@ -190,7 +190,9 @@ jobs:
 
           git -C prod-site fetch origin prod
           git -C prod-site reset --hard FETCH_HEAD
-          rsync -a --delete dist/ prod-site/
+          rsync -a --delete --exclude='/.git/' dist/ prod-site/
+          test -e prod-site/.git
+          git -C prod-site rev-parse --show-toplevel
 
           git -C prod-site config user.name "github-actions[bot]"
           git -C prod-site config user.email \
