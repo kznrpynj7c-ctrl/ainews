@@ -180,6 +180,9 @@ jobs:
         run: |
           set -euo pipefail
           npm run build
+
+          git -C prod-site fetch origin prod
+          git -C prod-site reset --hard FETCH_HEAD
           rsync -a --delete dist/ prod-site/
 
           git -C prod-site config user.name "github-actions[bot]"
@@ -189,7 +192,6 @@ jobs:
 
           if ! git -C prod-site diff --cached --quiet; then
             git -C prod-site commit -m "Publish static site"
-            git -C prod-site pull --rebase origin prod
             git -C prod-site push origin HEAD:prod
           else
             echo "Published site is already up to date."
