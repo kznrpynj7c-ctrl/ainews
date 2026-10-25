@@ -90,7 +90,9 @@ jobs:
           set -euo pipefail
 
           mkdir -p content/articles
-          article_name="content/articles/article-$(basename "$INCOMING_FILE" .txt).md"
+          incoming_basename=$(basename "$INCOMING_FILE")
+          incoming_stem="${incoming_basename%.*}"
+          article_name="content/articles/article-${incoming_stem}.md"
           prompt_file=$(mktemp)
           trap 'rm -f "$prompt_file"' EXIT
 
@@ -107,7 +109,14 @@ jobs:
             printf '\n\n'
             printf '%s\n' \
               "Write the final article content only." \
-              "Do not include explanations about the task."
+              "Do not include explanations about the task outside the article." \
+              "The output must begin with this exact Markdown frontmatter structure:" \
+              '---' \
+              'title: "A concise Danish article title"' \
+              "date: \"$(date -u +%F)\"" \
+              'description: "A short Danish summary for the article listing."' \
+              '---' \
+              "Replace the example values with accurate article metadata. Keep the date format YYYY-MM-DD, then write the article body in Markdown."
           } > "$prompt_file"
 
           copilot -p "$(cat "$prompt_file")" \
@@ -127,7 +136,9 @@ jobs:
         run: |
           set -euo pipefail
 
-          article_name="content/articles/article-$(basename "$INCOMING_FILE" .txt).md"
+          incoming_basename=$(basename "$INCOMING_FILE")
+          incoming_stem="${incoming_basename%.*}"
+          article_name="content/articles/article-${incoming_stem}.md"
 
           git config user.name "github-actions[bot]"
           git config user.email \
