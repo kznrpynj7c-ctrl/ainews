@@ -1,1 +1,1 @@
-Claus Hjort: Ekskluder folketingsmedlemmer, der fremover stemmer imod gruppen
+Claus Hjort: Ekskluder folketingsmedlemmer, der fremover stemmer imod gruppen i folketinget
