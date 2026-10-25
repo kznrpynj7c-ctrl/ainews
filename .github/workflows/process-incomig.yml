@@ -1,0 +1,19 @@
+
+name: Process Incoming Files
+
+on:
+  push:
+    paths:
+      - 'incoming/**'
+
+jobs:
+  process:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Process incoming files
+        run: |
+          echo "A file in incoming/ has changed!"
+          ls -la incoming/

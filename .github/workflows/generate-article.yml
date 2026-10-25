@@ -1,0 +1,139 @@
+
+name: Generate Article with Copilot
+
+on:
+  push:
+    paths:
+      - 'incoming/**'
+      - 'news-prompt.md'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  copilot-requests: write
+
+concurrency:
+  group: generate-article-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Find newest incoming file changed in this push
+        id: incoming
+        shell: bash
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+        run: |
+          set -euo pipefail
+
+          if [[ "$EVENT_NAME" == "workflow_dispatch" ]]; then
+            git ls-tree -r --name-only HEAD incoming/ \
+              > /tmp/candidates.txt
+          elif [[ "$BEFORE_SHA" =~ ^0+$ ]]; then
+            git ls-tree -r --name-only HEAD incoming/ \
+              > /tmp/candidates.txt
+          else
+            git diff --diff-filter=AM --name-only \
+              "$BEFORE_SHA" "$AFTER_SHA" -- incoming/ \
+              > /tmp/candidates.txt
+          fi
+
+          newest=""
+          newest_time=0
+
+          while IFS= read -r file; do
+            [[ -n "$file" && -f "$file" ]] || continue
+
+            timestamp=$(git log -1 --format=%ct \
+              "$AFTER_SHA" -- "$file")
+
+            if [[ "$timestamp" =~ ^[0-9]+$ ]] &&
+               (( timestamp >= newest_time )); then
+              newest="$file"
+              newest_time="$timestamp"
+            fi
+          done < /tmp/candidates.txt
+
+          if [[ -z "$newest" ]]; then
+            echo "No added or modified incoming file found."
+            exit 1
+          fi
+
+          echo "file=$newest" >> "$GITHUB_OUTPUT"
+          echo "Selected: $newest"
+          echo "Commit timestamp: $newest_time"
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install GitHub Copilot CLI
+        run: npm install -g @github/copilot
+
+      - name: Generate article
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INCOMING_FILE: ${{ steps.incoming.outputs.file }}
+        run: |
+          set -euo pipefail
+
+          article_name="article-$(basename "$INCOMING_FILE")"
+          prompt_file=$(mktemp)
+          trap 'rm -f "$prompt_file"' EXIT
+
+          {
+            cat news-prompt.md
+
+            printf '\n\n'
+            printf '%s\n' \
+              '--- BEGIN INCOMING FILE ---'
+            cat "$INCOMING_FILE"
+            printf '\n%s\n' \
+              '--- END INCOMING FILE ---'
+
+            printf '\n\n'
+            printf '%s\n' \
+              "Write the final article content only." \
+              "Do not include explanations about the task."
+          } > "$prompt_file"
+
+          copilot -p "$(cat "$prompt_file")" \
+            --no-ask-user \
+            > "$article_name"
+
+          test -s "$article_name"
+          echo "Generated $article_name"
+
+      - name: Commit generated article
+        shell: bash
+        env:
+          INCOMING_FILE: ${{ steps.incoming.outputs.file }}
+        run: |
+          set -euo pipefail
+
+          article_name="article-$(basename "$INCOMING_FILE")"
+
+          git config user.name "github-actions[bot]"
+          git config user.email \
+            "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add -- "$article_name"
+
+          if ! git diff --cached --quiet; then
+            git commit -m "Generate article from $INCOMING_FILE"
+            git push
+          else
+            echo "No article changes to commit."
+          fi
