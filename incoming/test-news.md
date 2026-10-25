@@ -1,6 +1,2 @@
-Optøjer spreder sig i Europa 17. okt kl. 14.24
-Opdateret 6 min siden
-Selma Hildebrand Frederiksen Natali Braagaard
-Hvad sker der? Der er varslet nye demonstrationer i Frankrig, og 70.000 sikkerhedsstyrker er blevet mobiliseret.
-
-Det kommer efter flere ugers demonstrationer mod ulighed, utilstrækkelige offentlige midler og dalende standarder.
+Den tidligere demokratiske præsident Barack Obama lagde ingen fingre imellem ved et vælgermøde i Ohio lørdag.
+I nat gik Obama endelig på scenen – og han lagde ikke fingre imellem i sine angreb mod Trump
