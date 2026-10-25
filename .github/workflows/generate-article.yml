@@ -83,6 +83,18 @@ jobs:
       - name: Install GitHub Copilot CLI
         run: npm install -g @github/copilot
 
+      - name: Ask Copilot which models are available
+        shell: bash
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+
+          copilot -p "List the exact model IDs available to this authenticated Copilot account. Use the current runtime's available model list, not general knowledge. Return one model ID per line and say explicitly if you cannot access that list." \
+            --no-ask-user \
+            --allow-all-tools \
+            --allow-all-urls
+
       - name: Generate article
         id: article
         shell: bash
