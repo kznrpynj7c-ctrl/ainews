@@ -111,6 +111,9 @@ jobs:
 
           copilot -p "$(cat "$prompt_file")" \
             --no-ask-user \
+            --allow-all-tools \
+            --allow-all-urls \
+            -s \
             > "$article_name"
 
           test -s "$article_name"
