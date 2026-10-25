@@ -1,3 +1,9 @@
+---
+title: "Venstre og konflikten om landbrugets vilkår"
+date: "2026-10-25"
+description: "Venstres interne uenighed om landbrugspolitik, grøn omstilling og kompensation."
+---
+
 Det er en uenighed, der rækker ud over én lokalpolitikers syn på partiets retning. Den handler også om, hvor langt Venstre skal gå for at begrænse landbrugets påvirkning af natur og vandmiljø – og hvad det vil koste landmændene.
 
 Et centralt stridspunkt er gødskningsloven, som Folketinget vedtog 3. september. Loven skal regulere landbrugets udledning af kvælstof og er en del af den grønne trepartsaftale fra 2024. Ifølge [DR’s dækning af afstemningen](https://www.dr.dk/nyheder/politik/folketinget-vedtager-omstridt-goedskningslov) stemte 119 medlemmer for og 34 imod. Fem af Venstres folketingsmedlemmer stemte imod partilinjen. Under lovbehandlingen mødte landmænd op med traktorer ved Christiansborg; de frygtede ifølge DR, at reguleringen ville føre til ekstraregninger og true deres erhverv. [Lovforslaget, L 5](https://www.ft.dk/samling/20251/lovforslag/L5/index.htm), beskriver den nye regulering af næringsstoffer og drivhusgasser i land- og skovbruget.
