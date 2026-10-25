@@ -123,6 +123,7 @@ jobs:
             --no-ask-user \
             --allow-all-tools \
             --allow-all-urls \
+            --model claude-sonnet-5 \
             -s \
             > "$article_tmp"
 
