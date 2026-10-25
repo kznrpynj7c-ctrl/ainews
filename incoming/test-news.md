@@ -1,5 +1,12 @@
-Den tidligere demokratiske præsident Barack Obama lagde ingen fingre imellem ved et vælgermøde i Ohio lørdag.
+Fallit. Frankrig har i årtier udskudt den økonomiske virkelighed. Nu går det ikke længere.
 
-I nat gik Obama endelig på scenen – og han lagde ikke fingre imellem i sine angreb mod Trump. Ja
+En guillotine af gæld
+Alberte Bové Rud
 
+Lyt
 
+Kø
+
+Kaos præger Frankrig.
+
+På gaden protesterer unge demonstranter og kræver et bedre uddannelsessystem, højere levestandarder og et opgør med den siddende politiske klasse. I parlamentet diskuterer selvsamme elite, hvad løsningen er, og hvem der har ansvaret for den folkelige protest.
