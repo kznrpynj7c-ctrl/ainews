@@ -1,12 +1,10 @@
-Fallit. Frankrig har i årtier udskudt den økonomiske virkelighed. Nu går det ikke længere.
+'Boomerang-effekt': Europæiske lande sender igen migranter til Italien
+Oppositionspolitikere kalder det gengældelse for Italiens suspendering af Schengen-samarbejdet med Spanien.
 
-En guillotine af gæld
-Alberte Bové Rud
+Giorgia Meloni kan have et politisk motiv i at nægte tilbagesendelserne, uanset hvad EU-lovgivningen siger, mener ekspert. (Foto: © Manon Cruz/AFP/Ritzau Scanpix)
+Af
+Anne Sandager - EU-reporter, Bruxelles 22. aug kl. 08:57
+Mere end 30 dage gammel
 
-Lyt
-
-Kø
-
-Kaos præger Frankrig.
-
-På gaden protesterer unge demonstranter og kræver et bedre uddannelsessystem, højere levestandarder og et opgør med den siddende politiske klasse. I parlamentet diskuterer selvsamme elite, hvad løsningen er, og hvem der har ansvaret for den folkelige protest.
+https://www.dr.dk/nyheder/udland/eu/boomerang-effekt-europaeiske-lande-sender-igen-migranter-til-italien
+Holland vil sende afviste asylansøgere til Italien for første gang, siden Italiens premierminister, Giorgia Meloni, suspenderede modtagelse af migranter fra andre EU-lande for tre år siden.
