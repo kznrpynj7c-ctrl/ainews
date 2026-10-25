@@ -30,17 +30,8 @@ Skriv artiklen i Markdown. Links skrives som [kildens navn](https://example.com)
 
 Kør derefter `npm run build` igen. Generatoren genskaber `dist/` fra kilderne, så outputtet ikke bør redigeres manuelt.
 
-## Publicér til `prod`
+## Publicér med GitHub Pages
 
-Efter build kopieres outputtet til en checkout af `prod`-branchen. Eksempel med en ekstra worktree ved siden af projektmappen:
+Workflowet bygger sitet og publicerer `dist/` direkte til GitHub Pages, når der pushes ændringer til `incoming/` eller `news-prompt.md`. Det kan også startes manuelt fra fanen Actions.
 
-```sh
-git worktree add ../ainews-prod prod
-cp -R dist/. ../ainews-prod/
-cd ../ainews-prod
-git add -A
-git commit -m "Build site"
-git push origin prod
-```
-
-Kør `npm run build` fra projektmappen igen, kun når du vil opdatere sitet. I repositoryets GitHub Pages-indstillinger vælges `prod` og `/(root)`.
+Aktivér publicering én gang i repositoryets indstillinger: vælg **Settings → Pages → Build and deployment → Source → GitHub Actions**. Efterfølgende publicerer workflowet automatisk fra `main`.

@@ -11,6 +11,8 @@ on:
 permissions:
   contents: write
   copilot-requests: write
+  pages: write
+  id-token: write
 
 concurrency:
   group: generate-article-${{ github.ref }}
@@ -176,32 +178,28 @@ jobs:
             echo "No article changes to commit."
           fi
 
-      - name: Check out prod branch
-        uses: actions/checkout@v4
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Build static site
+        run: npm run build
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v4
         with:
-          ref: prod
-          path: prod-site
-          fetch-depth: 0
+          path: dist
 
-      - name: Build and publish static site
-        run: |
-          set -euo pipefail
-          npm run build
-
-          git -C prod-site fetch origin prod
-          git -C prod-site reset --hard FETCH_HEAD
-          rsync -a --delete --exclude='/.git/' dist/ prod-site/
-          test -e prod-site/.git
-          git -C prod-site rev-parse --show-toplevel
-
-          git -C prod-site config user.name "github-actions[bot]"
-          git -C prod-site config user.email \
-            "41898282+github-actions[bot]@users.noreply.github.com"
-          git -C prod-site add -A
-
-          if ! git -C prod-site diff --cached --quiet; then
-            git -C prod-site commit -m "Publish static site"
-            git -C prod-site push origin HEAD:prod
-          else
-            echo "Published site is already up to date."
-          fi
+  deploy:
+    needs: generate
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
