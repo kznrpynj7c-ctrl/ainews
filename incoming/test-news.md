@@ -1,3 +1,6 @@
-Putin kommenterer på europæiske optøjer
+Optøjer spreder sig i Europa 17. okt kl. 14.24
+Opdateret 6 min siden
+Selma Hildebrand Frederiksen Natali Braagaard
+Hvad sker der? Der er varslet nye demonstrationer i Frankrig, og 70.000 sikkerhedsstyrker er blevet mobiliseret.
 
-Når europæiske myndigheder giver Rusland skylden for de optøjer, der har fundet sted i en række lande den seneste tid, så analyserer de ikke de bagvedliggende grunde til begivenhederne.
+Det kommer efter flere ugers demonstrationer mod ulighed, utilstrækkelige offentlige midler og dalende standarder.

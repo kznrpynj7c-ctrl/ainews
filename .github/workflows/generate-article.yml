@@ -82,6 +82,7 @@ jobs:
         run: npm install -g @github/copilot
 
       - name: Generate article
+        id: article
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -89,12 +90,9 @@ jobs:
         run: |
           set -euo pipefail
 
-          mkdir -p content/articles
-          incoming_basename=$(basename "$INCOMING_FILE")
-          incoming_stem="${incoming_basename%.*}"
-          article_name="content/articles/article-${incoming_stem}.md"
           prompt_file=$(mktemp)
-          trap 'rm -f "$prompt_file"' EXIT
+          article_tmp=$(mktemp)
+          trap 'rm -f "$prompt_file" "$article_tmp"' EXIT
 
           {
             cat news-prompt.md
@@ -124,31 +122,49 @@ jobs:
             --allow-all-tools \
             --allow-all-urls \
             -s \
-            > "$article_name"
+            > "$article_tmp"
 
-          test -s "$article_name"
+          test -s "$article_tmp"
+
+          title=$(sed -n 's/^title: *"\(.*\)"$/\1/p' "$article_tmp" | head -n 1)
+          if [[ -z "$title" ]]; then
+            echo "Generated article is missing a quoted title in its frontmatter."
+            exit 1
+          fi
+
+          slug=$(ARTICLE_TITLE="$title" node -e '
+            const title = process.env.ARTICLE_TITLE;
+            const slug = title
+              .toLowerCase()
+              .replaceAll("æ", "ae").replaceAll("ø", "oe").replaceAll("å", "aa")
+              .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+              .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+            process.stdout.write(slug || "article");
+          ')
+          content_hash=$(sha256sum "$INCOMING_FILE" | cut -c1-8)
+          mkdir -p content/articles
+          article_name="content/articles/${slug}-${content_hash}.md"
+          mv "$article_tmp" "$article_name"
+          echo "path=$article_name" >> "$GITHUB_OUTPUT"
           echo "Generated $article_name"
 
       - name: Commit generated article
         shell: bash
         env:
-          INCOMING_FILE: ${{ steps.incoming.outputs.file }}
+          ARTICLE_PATH: ${{ steps.article.outputs.path }}
         run: |
           set -euo pipefail
-
-          incoming_basename=$(basename "$INCOMING_FILE")
-          incoming_stem="${incoming_basename%.*}"
-          article_name="content/articles/article-${incoming_stem}.md"
 
           git config user.name "github-actions[bot]"
           git config user.email \
             "41898282+github-actions[bot]@users.noreply.github.com"
 
-          git add -- "$article_name"
+          git add -- "$ARTICLE_PATH"
 
           if ! git diff --cached --quiet; then
-            git commit -m "Generate article from $INCOMING_FILE"
-            git push
+            git commit -m "Generate article at $ARTICLE_PATH"
+            git pull --rebase origin "$GITHUB_REF_NAME"
+            git push origin "HEAD:$GITHUB_REF_NAME"
           else
             echo "No article changes to commit."
           fi
@@ -173,6 +189,7 @@ jobs:
 
           if ! git -C prod-site diff --cached --quiet; then
             git -C prod-site commit -m "Publish static site"
+            git -C prod-site pull --rebase origin prod
             git -C prod-site push origin HEAD:prod
           else
             echo "Published site is already up to date."
