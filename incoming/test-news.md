@@ -1,7 +1,7 @@
 headline: Hvis højrefløjen har løsningen på Europas uro, hvorfor virker den så ikke i Italien?
 
 eloni har i fire år ført den politik, som hendes ideologiske frænder ser som svaret på Europas problemer. Alligevel er også Italien ramt af voldelige uroligheder. De unges frustrationer kan ikke bekæmpes med politi og straf alene
-Skrevet af
+Skrevet af:
 Martin Gøttske
 Europakorrespondent
 Ro og orden vil for alvor blive genskabt, hvis Europas unge reelt kan tro på deres egen fremtid.
