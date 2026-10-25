@@ -162,8 +162,15 @@ jobs:
           git add -- "$ARTICLE_PATH"
 
           if ! git diff --cached --quiet; then
+            generated_article=$(mktemp)
+            cp -- "$ARTICLE_PATH" "$generated_article"
+            git fetch origin "$GITHUB_REF_NAME"
+            git reset --hard FETCH_HEAD
+            mkdir -p "$(dirname "$ARTICLE_PATH")"
+            cp -- "$generated_article" "$ARTICLE_PATH"
+            rm -f "$generated_article"
+            git add -- "$ARTICLE_PATH"
             git commit -m "Generate article at $ARTICLE_PATH"
-            git pull --rebase origin "$GITHUB_REF_NAME"
             git push origin "HEAD:$GITHUB_REF_NAME"
           else
             echo "No article changes to commit."
