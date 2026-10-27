@@ -1,11 +1,19 @@
-Serbiens stærke mand er faldet. Nu står landet over for et historisk opbrud
-Efter mere end et årti med Aleksandar Vučić ved magten har Serbiens studerende sikret sig en jordskredssejr. Det åbner for et demokratisk nybrud – men store udfordringer venter forude
+Det er det, der er gemt i skroget, der gør krigsskibet helt specielt. Sådan gør Kina klar til den næste krig
 
-26. oktober 2026
-Der var frygt for, at Aleksandar Vučić kunne finde på at bruge vold og magt for at fastholde sit herredømme. Men der gik blot ganske få minutter, efter de første valgresultater ved søndagens parlamentsvalg i Serbien var kommet ind, før han overraskende og uden videre modstand gav slip på det jerngreb, han har haft om magten – og da det skete, førte det til et jubelbrøl på gaden.
+Det hemmelige gemmer sig inde i skibet, ja faktisk under skibsbunden. Kina forbereder sig på en krig, hvor fjenden hedder USA. Og noget tyder på, at de vil flytte krigen helt tæt på amerikanernes egen kyst. Våbnene er moderskibe og undervandsdroner ingen har set tilsvarende før.
 
-»Det er åbenlyst, at vi har tabt valget,« lød det fra Vučić søndag aften.
 
-I mere end et årti har han domineret serbisk politik og trukket landet i en autoritær retning.
+Den har fået navnet Orca, den er USAs første bud på en stor ubemandet undervandsdrone. Lige nu er den ved at blive afprøvet, men ikke klar til at blive taget i brug. Foto: Boeing
+Billede af Peter Suppli Benson
+Peter Suppli Benson
+Nordisk korrespondent
 
-Hans fald sker pludseligt…
+Lyt
+
+Kø
+
+Gem artikel
+Set udefra gør skibet ikke meget væsen af sig.
+
+Det er gråt, sådan som de fleste andre skibe, der tilhører et af verdens søværn, er.
+
