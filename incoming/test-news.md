@@ -1,8 +1,5 @@
-AI-boblen er sprunget i Kina
+Bulgarien får sin første valgte kvindelige præsident
 
-Arkivfoto: Aly Song/Reuters/Ritzau Scanpix
-WILLIAM KRING ØSTERGAARD
-29. OKT. 2026 KL. 18.33
-For fire måneder siden toppede AI-aktiemarkedet i Kina, men nu har det buldrende rally ramt en mur.
-
-Aktieindekset Star 50, der følger de 50 største og mest omsatte teknologiselskaber på Shanghai-børsens innovationsmarked, er faldet med omkring 44 pct. siden slutningen af juni.
+Åbn Billedefremviser
+Iliana Iotova står ifølge stemmeoptællingerne til at blive Bulgariens første kvindelige præsident. Foto: Dobrin Kashavelov / Ritzau Scanpix
+Iliana Iotova står til at vinde den bulgarske præsidentvalgkamp over konkurrenten Andrey Gyurov. Det viser stemmeoptællinger ifølge det bulgarske nyhedsbureau Novinite. Iliana Iotova fører med stor margin, og derfor skriver en række medier som Al Jazeera, at hun har vundet valget. Iotova står dermed til at blive landets første valgte kvindelige præsident.
