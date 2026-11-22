@@ -12,16 +12,16 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
   deploy:
+    runs-on: ubuntu-latest
+
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-
-    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
@@ -29,6 +29,14 @@ jobs:
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
+
+      - name: Check website files
+        run: |
+          ls -la
+          test -f index.html || {
+            echo "ERROR: index.html not found in repository root"
+            exit 1
+          }
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
