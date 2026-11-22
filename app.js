@@ -168,13 +168,15 @@ addForm.addEventListener("submit", (event) => {
 let swipeStartX = 0;
 let swipeStartY = 0;
 let swipeRow = null;
+let swipeCaptureTarget = null;
 stationList.addEventListener("pointerdown", (event) => {
   const row = event.target.closest(".station-row.removable");
   if (!row || event.target.closest(".delete-station")) return;
   swipeRow = row;
   swipeStartX = event.clientX;
   swipeStartY = event.clientY;
-  row.setPointerCapture(event.pointerId);
+  swipeCaptureTarget = row.querySelector(".station-card");
+  swipeCaptureTarget.setPointerCapture(event.pointerId);
 });
 stationList.addEventListener("pointermove", (event) => {
   if (!swipeRow) return;
@@ -191,16 +193,18 @@ stationList.addEventListener("pointerup", (event) => {
   if (!swipeRow) return;
   const row = swipeRow;
   const wasSwipe = swipeStartX - event.clientX > 60;
-  row.releasePointerCapture(event.pointerId);
+  swipeCaptureTarget.releasePointerCapture(event.pointerId);
   row.classList.toggle("swiped", wasSwipe);
   row.querySelector(".station-card").style.transform = "";
   swipeRow = null;
+  swipeCaptureTarget = null;
 });
 stationList.addEventListener("pointercancel", () => {
   if (!swipeRow) return;
   swipeRow.classList.remove("swiping");
   swipeRow.querySelector(".station-card").style.transform = "";
   swipeRow = null;
+  swipeCaptureTarget = null;
 });
 stationList.addEventListener("click", (event) => {
   const row = event.target.closest(".station-row");
