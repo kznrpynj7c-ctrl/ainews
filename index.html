@@ -1,12 +1,43 @@
 <!doctype html>
-<html lang="da">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=./prod-site/index.html">
-  <title>AI News</title>
-</head>
-<body>
-  <p><a href="./prod-site/index.html">Gå til AI News</a></p>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#11131a" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Pulse Radio" />
+    <meta name="description" content="A beautiful, focused web radio player." />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Pulse Radio</title>
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="stations-section" aria-labelledby="stations-heading">
+        <div class="section-heading">
+          <h2 id="stations-heading">Stations</h2>
+          <div class="section-actions">
+            <button class="add-button" id="add-button" type="button" aria-label="Add station" aria-expanded="false">+</button>
+          </div>
+        </div>
+        <section class="add-station-panel" id="add-station-panel" hidden aria-labelledby="add-station-heading">
+          <div class="add-station-panel-heading">
+            <h3 id="add-station-heading">Add station</h3>
+            <button class="cancel-button" id="cancel-button" type="button">Cancel</button>
+          </div>
+          <form class="add-station-form" id="add-station-form">
+            <input id="station-name" type="text" placeholder="Station name (optional)" aria-label="Station name" autocomplete="off" />
+            <input id="station-url" type="url" inputmode="url" placeholder="Paste stream URL" aria-label="Station stream URL" autocomplete="url" required />
+            <button type="submit">Add station</button>
+          </form>
+        </section>
+        <p class="form-message" id="form-message" role="status" aria-live="polite"></p>
+        <div class="station-list" id="station-list"></div>
+        <audio id="audio-player" controls preload="none" aria-label="Radio player"></audio>
+      </section>
+    </main>
+    <script src="app.js"></script>
+  </body>
 </html>
