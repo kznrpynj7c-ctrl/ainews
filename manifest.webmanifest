@@ -1,0 +1,12 @@
+{
+  "name": "Pulse Radio",
+  "short_name": "Pulse",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#11131a",
+  "theme_color": "#11131a",
+  "description": "A beautiful, focused web radio player.",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
